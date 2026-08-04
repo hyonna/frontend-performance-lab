@@ -9,8 +9,7 @@ import React from 'react';
 
 const summery = `  성능 최적화는 단순히 'React.memo', useMemo', Code Splitting과 같은 기법을 적용하는 것이 아니라, \n성능 저하의 원인을 분석하고 상황에 맞는 해결 방법을 선택하는 과정이라고 생각합니다. 
 
-하지만 대부분의 자료는 최적화 기법 자체를 소개하는 데 그쳐, \n실제 서비스에서 어떤 문제가 발생했고 어떤 방식으로 개선되었는지,
-                    그리고 그 결과가 얼마나 효과적이었는지 확인하기 어려웠습니다.
+하지만 대부분의 자료는 최적화 기법 자체를 소개하는 데 그쳐, 실제 서비스에서 어떤 문제가 발생했고 어떤 방식으로 개선되었는지, 그리고 그 결과가 얼마나 효과적이었는지 확인하기 어려웠습니다.
                     
                     이 프로젝트는 이러한 아쉬움에서 출발해 실무에서 자주 발생하는 렌더링 과다, 초기 번들 크기 증가, LCP 지연, 메모리 누수와 같은 성능 이슈를 직접 재현하고, 원인 분석부터 개선 과정까지 수치로 검증하는 실험 플랫폼으로 제작했습니다.
 
@@ -27,7 +26,7 @@ export function MetricDashboard() {
       {/* Integrated Hero Banner Card with Purpose & Guide */}
       <GeistCard className="p-8 md:p-10 relative overflow-hidden bg-gradient-to-b from-neutral-50 via-white to-white border border-neutral-200 space-y-8">
         {/* Top Header & Intro */}
-        <div className="max-w-3xl space-y-4">
+        <div className="w-full space-y-4">
 
           <h1 className="text-3xl md:text-5xl font-black text-black leading-tight">
             Frontend Performance <span className="text-neutral-700">Lab</span>
@@ -37,7 +36,7 @@ export function MetricDashboard() {
           {/* Integrated Purpose & Guide Section Inside Hero Banner */}
           <div className="flex gap-6 pt-4 ">
             {/* Detailed Purpose Card */}
-            <div className="lg:col-span-2 space-y-4 bg-neutral-50">
+            <div className="w-full space-y-4 ">
               <div className="text-black font-bold text-lg border-b border-neutral-200 pb-2">
                 왜 이 프로젝트를 만들었나요?
               </div>
@@ -69,7 +68,7 @@ export function MetricDashboard() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
           {EXPERIMENTS_DATA.map((exp) => (
             <Link key={exp.id} href={`/experiments/${exp.slug}`} className="group">
               <GeistCard
@@ -81,32 +80,17 @@ export function MetricDashboard() {
                     <GeistBadge variant="mono" className="text-sm font-bold">
                       실험 #{exp.number}
                     </GeistBadge>
-                    <GeistBadge variant="blue" className="text-sm font-bold">
-                      {exp.improvementRate}
-                    </GeistBadge>
+
                   </div>
 
                   <h3 className="text-base font-bold text-black group-hover:text-neutral-700 transition">
                     {exp.titleKo}
                   </h3>
-                  <p className="text-sm font-mono text-neutral-700 mb-2 font-medium">{exp.title}</p>
                   <p className="text-sm text-neutral-700 line-clamp-2 leading-relaxed font-sans font-normal">
                     {exp.description}
                   </p>
                 </div>
 
-                <div className="mt-5 pt-3 border-t border-neutral-200 flex items-center justify-between text-sm font-mono">
-                  <div className="flex items-center space-x-2 text-neutral-700 font-medium">
-                    <span className="line-through text-neutral-500 font-bold">
-                      {exp.beforeStats.value}
-                    </span>
-                    <span className="text-neutral-400">➔</span>
-                    <span className="text-blue-900 font-bold">{exp.afterStats.value}</span>
-                  </div>
-                  <div className="flex items-center text-black font-bold group-hover:translate-x-0.5 transition">
-                    <span>실험실 입장 ➔</span>
-                  </div>
-                </div>
               </GeistCard>
             </Link>
           ))}

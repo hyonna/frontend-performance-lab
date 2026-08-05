@@ -5,14 +5,14 @@ import { ExperimentHeader } from '@/widgets/ExperimentHeader';
 import dynamic from 'next/dynamic';
 import { notFound } from 'next/navigation';
 
-// Loading Fallback for Client Sandbox Chunks
+// 클라이언트 샌드박스 청크 로딩 폴백
 const LoadingFallback = () => (
   <GeistCard className="h-48 flex items-center justify-center space-x-2 text-sm font-mono text-neutral-700 bg-white border border-neutral-200">
-    <span>실험 샌드박스 모듈 로딩 중...</span>
+    <span>테스트 모듈 로딩 중...</span>
   </GeistCard>
 );
 
-// Dynamic Imports with ssr: false to prevent Hydration Mismatch on client sandboxes
+// 클라이언트 수화 불일치 방지를 위한 ssr: false 동적 임포트
 const RenderingExperiment = dynamic(
   () => import('@/features/experiments/RenderingExperiment').then((m) => m.RenderingExperiment),
   { loading: LoadingFallback, ssr: false },
@@ -72,7 +72,7 @@ interface ExperimentPageProps {
 }
 
 export default async function ExperimentPage({ params }: ExperimentPageProps) {
-  // Support both Next.js 14 and Next.js 15 async params
+  // Next.js 14 및 15 비동기 파라미터 호환 처리
   const resolvedParams = await params;
   const experiment = EXPERIMENTS_DATA.find((e) => e.slug === resolvedParams.slug);
 
@@ -109,19 +109,18 @@ export default async function ExperimentPage({ params }: ExperimentPageProps) {
 
   return (
     <div className="space-y-8 pb-12">
-      {/* Experiment Header Banner & Metrics */}
+      {/* 테스트 헤더 배너 및 수치 요약 */}
       <ExperimentHeader experiment={experiment} />
 
-      {/* Interactive Sandbox Feature Component */}
+      {/* 인터랙티브 샌드박스 컴포넌트 */}
       <div className="space-y-3">
         <h2 className="text-sm font-bold text-black flex items-center space-x-2 font-mono">
-          <span className="w-2.5 h-2.5 rounded-full bg-blue-600 animate-ping inline-block" />
           <span>실시간 측정 샌드박스</span>
         </h2>
         {renderDemo()}
       </div>
 
-      {/* Experiment Retrospective Report & Code Comparison Document */}
+      {/* 테스트 회고 리포트 및 소스코드 비교 분석 문서 */}
       <ReportTabs
         report={experiment.report}
         codeSnippet={experiment.codeSnippet}

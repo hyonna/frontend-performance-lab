@@ -20,14 +20,14 @@ export function Sidebar() {
               : 'text-black font-medium hover:bg-neutral-100'
           }`}
         >
-          <span>전체 개요 대시보드</span>
+          <span>Front Performance Lab</span>
         </Link>
       </div>
 
       <div className="flex-1 overflow-y-auto p-3 space-y-4">
         <div>
           <div className="px-2 mb-2 flex items-center justify-between text-sm font-mono text-neutral-700 font-bold">
-            <span>성능 실험 카탈로그</span>
+            <span>성능 테스트 리스트</span>
           </div>
 
           <div className="space-y-1">

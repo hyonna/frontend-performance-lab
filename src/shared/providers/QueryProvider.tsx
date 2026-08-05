@@ -4,13 +4,17 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type React from 'react';
 import { useState } from 'react';
 
-export default function QueryProvider({ children }: { children: React.ReactNode }) {
+export default function QueryProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [queryClient] = useState(
     () =>
       new QueryClient({
         defaultOptions: {
           queries: {
-            staleTime: 1000 * 5, // 5초 기본
+            staleTime: 1000 * 5, // 5초 기본 스탈 타임
             refetchOnWindowFocus: false,
           },
         },

@@ -10,9 +10,9 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: 'Frontend Performance Lab — 프론트엔드 성능 최적화 실험실',
+  title: 'Frontend Performance Lab — 프론트엔드 성능 최적화 테스트',
   description:
-    '의도적으로 느리게 만든 후, 원인을 분석하고 최적화하여 수치로 증명하는 프론트엔드 성능 실험 플랫폼',
+    '의도적으로 느리게 만든 후, 원인을 분석하고 최적화하여 수치로 증명하는 프론트엔드 성능 테스트 플랫폼',
   keywords: [
     '프론트엔드 성능 최적화',
     'Next.js',
@@ -23,9 +23,13 @@ export const metadata: Metadata = {
     'Virtual Scroll',
     'Code Splitting',
   ],
+  icons: {
+    icon: '/icon.svg',
+    apple: '/icon.svg',
+  },
   openGraph: {
     title: 'Frontend Performance Lab',
-    description: '성능 문제 재현 ➔ 원인 분석 ➔ 최적화 적용 ➔ 수치 검증 프론트엔드 최적화 카탈로그',
+    description: '성능 문제 재현 ➔ 원인 분석 ➔ 최적화 적용 ➔ 수치 검증 프론트엔드 최적화 리스트',
     type: 'website',
     locale: 'ko_KR',
   },
@@ -43,15 +47,22 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
       </head>
       <body className="bg-geist-bg text-black min-h-screen flex flex-col antialiased">
         <QueryProvider>
           <div className="flex flex-1">
             <Sidebar />
-            <main className="flex-1 p-6 md:p-8 max-w-7xl mx-auto w-full overflow-x-hidden">
-              {children}
-            </main>
+            <div className="flex-1 flex flex-col min-h-screen">
+              <main className="flex-1 p-6 md:p-8 max-w-7xl mx-auto w-full overflow-x-hidden">
+                {children}
+              </main>
+              {/* 푸터 */}
+              <footer className="py-6 border-t border-neutral-200 text-center text-sm font-sans text-neutral-700 font-medium">
+                © 2026 Yoon Hyun A. All rights reserved
+              </footer>
+            </div>
           </div>
         </QueryProvider>
       </body>

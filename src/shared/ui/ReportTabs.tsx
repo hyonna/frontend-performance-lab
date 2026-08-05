@@ -22,7 +22,7 @@ interface ReportTabsProps {
 export function ReportTabs({ report, codeSnippet, titleKo }: ReportTabsProps) {
   return (
     <div className="space-y-6 mt-10">
-      {/* Document Section Header */}
+      {/* 분석 문서 섹션 헤더 */}
       <div className="flex items-center justify-between pb-3 border-b border-geist-border">
         <h2 className="text-base font-bold text-black">{titleKo} — 실무 성능 종합 분석 리포트</h2>
         <GeistBadge variant="mono" className="text-sm font-semibold">
@@ -86,7 +86,7 @@ export function ReportTabs({ report, codeSnippet, titleKo }: ReportTabsProps) {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {/* Before Code */}
+            {/* 개선 전 코드 */}
             <div className="space-y-2">
               <div className="flex items-center justify-between px-3.5 py-2 bg-neutral-900 rounded-t-lg text-white font-mono text-sm">
                 <span className="text-neutral-400 font-bold">개선 전 비최적화 소스</span>
@@ -97,7 +97,7 @@ export function ReportTabs({ report, codeSnippet, titleKo }: ReportTabsProps) {
               </pre>
             </div>
 
-            {/* After Code */}
+            {/* 개선 후 코드 */}
             <div className="space-y-2">
               <div className="flex items-center justify-between px-3.5 py-2 bg-neutral-900 rounded-t-lg text-white font-mono text-sm">
                 <span className="text-blue-300 font-bold">최적화 완료 소스</span>

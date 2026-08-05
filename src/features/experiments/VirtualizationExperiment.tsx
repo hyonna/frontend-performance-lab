@@ -25,7 +25,7 @@ export function VirtualizationExperiment() {
 
   return (
     <div className="space-y-4">
-      {/* Mode Switcher & Stats */}
+      {/* 모드 스위처 및 수치 지표 */}
       <GeistCard className="flex items-center justify-between p-4 bg-white border border-neutral-200">
         <div className="flex space-x-2">
           <GeistButton
@@ -64,7 +64,7 @@ export function VirtualizationExperiment() {
         </div>
       </GeistCard>
 
-      {/* List Container */}
+      {/* 리스트 컨테이너 */}
       <GeistCard className="bg-white border border-neutral-200">
         <div className="flex items-center justify-between mb-2 pb-2 border-b border-neutral-200 text-sm font-mono text-black font-bold">
           <span>아이템 식별번호 및 상품명</span>

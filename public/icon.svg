@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <rect width="32" height="32" rx="7" fill="#000000"/>
+  <!-- Performance Symbol 'P' -->
+  <text x="6" y="23" font-family="Pretendard, system-ui, -apple-system, sans-serif" font-weight="900" font-size="20" fill="#FFFFFF">P</text>
+  <!-- Speed / Flash Performance Metric Indicator -->
+  <path d="M21 5L15 17H20L18 27L27 13H21L23 5Z" fill="#1e3a8a" stroke="#60a5fa" stroke-width="0.8"/>
+</svg>

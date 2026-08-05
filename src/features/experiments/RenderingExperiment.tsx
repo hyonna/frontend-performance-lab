@@ -58,7 +58,7 @@ export function RenderingExperiment() {
 
   return (
     <div className="space-y-4">
-      {/* Mode Switcher */}
+      {/* 모드 스위처 */}
       <GeistCard className="flex items-center justify-between p-4 bg-white border border-neutral-200">
         <div className="flex space-x-2">
           <GeistButton
@@ -98,7 +98,7 @@ export function RenderingExperiment() {
         </div>
       </GeistCard>
 
-      {/* Demo Grid */}
+      {/* 데모 그리드 */}
       <GeistCard className="bg-white border border-neutral-200">
         <div className="flex items-center justify-between mb-3 pb-3 border-b border-neutral-200 text-sm font-mono">
           <div className="text-black font-bold">

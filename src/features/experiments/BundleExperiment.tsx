@@ -21,7 +21,7 @@ export function BundleExperiment() {
 
   return (
     <div className="space-y-4">
-      {/* Mode Switcher */}
+      {/* 모드 스위처 */}
       <GeistCard className="flex items-center justify-between p-4 bg-white border border-neutral-200">
         <div className="flex space-x-2">
           <GeistButton
@@ -51,7 +51,7 @@ export function BundleExperiment() {
         </GeistButton>
       </GeistCard>
 
-      {/* Visual Breakdown */}
+      {/* 시각적 구조 분석 */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <GeistCard className="bg-white border border-neutral-200">
           <h4 className="text-sm font-mono font-bold text-black mb-4">웹팩 번들 청크 구조 분석</h4>

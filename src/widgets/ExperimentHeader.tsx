@@ -17,7 +17,7 @@ export function ExperimentHeader({ experiment }: ExperimentHeaderProps) {
         <div className="space-y-3">
           <div className="flex items-center space-x-2">
             <GeistBadge variant="mono" className="text-sm font-bold">
-              실험 #{experiment.number}
+              테스트 #{experiment.number}
             </GeistBadge>
             <GeistBadge variant="default" className="text-sm font-bold">
               {experiment.category}

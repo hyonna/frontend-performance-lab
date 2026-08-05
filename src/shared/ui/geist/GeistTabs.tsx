@@ -1,14 +1,16 @@
-import { clsx } from 'clsx';
-import type React from 'react';
+'use client';
 
-interface TabItem {
+import { clsx } from 'clsx';
+import React from 'react';
+
+export interface TabItem {
   id: string;
   label: string;
-  icon?: React.ComponentType<{ className?: string }>;
+  count?: number | string;
 }
 
 interface GeistTabsProps {
-  tabs: readonly TabItem[];
+  tabs: TabItem[];
   activeTab: string;
   onChange: (id: string) => void;
   className?: string;
@@ -16,28 +18,42 @@ interface GeistTabsProps {
 
 export function GeistTabs({ tabs, activeTab, onChange, className }: GeistTabsProps) {
   return (
-    <div className={clsx('flex border-b border-geist-border bg-white overflow-x-auto', className)}>
+    <div
+      className={clsx(
+        'flex space-x-1 border-b border-neutral-200 bg-white px-2 pt-1 font-mono text-sm',
+        className,
+      )}
+    >
       {tabs.map((tab) => {
-        const Icon = tab.icon;
         const isActive = activeTab === tab.id;
-
         return (
           <button
             type="button"
             key={tab.id}
             onClick={() => onChange(tab.id)}
             className={clsx(
-              'flex items-center space-x-2 px-4 py-3 text-xs font-mono font-medium transition-all relative shrink-0',
-              isActive ? 'text-black font-bold' : 'text-neutral-500 hover:text-neutral-800',
+              'relative px-4 py-2.5 transition-colors duration-150 font-bold',
+              isActive ? 'text-black' : 'text-neutral-700 hover:text-black',
             )}
           >
-            {Icon && <Icon className="w-3.5 h-3.5" />}
-            <span>{tab.label}</span>
+            <span className="flex items-center space-x-2">
+              <span>{tab.label}</span>
+              {tab.count !== undefined && (
+                <span
+                  className={clsx(
+                    'px-2 py-0.5 rounded text-sm',
+                    isActive
+                      ? 'bg-neutral-100 text-black border border-neutral-300'
+                      : 'bg-neutral-100 text-neutral-700',
+                  )}
+                >
+                  {tab.count}
+                </span>
+              )}
+            </span>
 
-            {/* Vercel Active Tab Indicator */}
-            {isActive && (
-              <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-black rounded-t" />
-            )}
+            {/* Vercel 활성 탭 인디케이터 */}
+            {isActive && <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-black" />}
           </button>
         );
       })}

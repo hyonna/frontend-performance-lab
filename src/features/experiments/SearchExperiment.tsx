@@ -45,7 +45,7 @@ export function SearchExperiment() {
 
   return (
     <div className="space-y-4">
-      {/* Mode Switcher */}
+      {/* 모드 스위처 */}
       <GeistCard className="flex items-center justify-between p-4 bg-white border border-neutral-200">
         <div className="flex space-x-2">
           <GeistButton

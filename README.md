@@ -2,6 +2,8 @@
 
 > **React랑 Next.js로 개발할 때 앱이 느려지는 원인을 찾아내고, 여러 최적화 방법을 써보면서 실제로 얼마나 빨라지는지 직접 테스트해본 프로젝트입니다.**
 
+🔗 **라이브 데모 웹사이트**: [https://fe-perfomance-lab.vercel.app/](https://fe-perfomance-lab.vercel.app/)
+
 ![Frontend Performance Lab Dashboard Preview](./public/dashboard_preview.png)
 
 ---
@@ -9,6 +11,7 @@
 ## 1. 프로젝트 개요
 
 - **프로젝트명**: Frontend Performance Lab
+- **데모 사이트**: [https://fe-perfomance-lab.vercel.app/](https://fe-perfomance-lab.vercel.app/)
 - **개발자**: 윤현아
 - **프로젝트 형태**: 개인 포트폴리오 프로젝트
 - **주요 내용**: 개발할 때 자주 겪는 20가지 성능 문제들을 일부러 만들어보고, 왜 느려지는지 원인을 찾아서 고친 다음 고치기 전후 수치를 직접 비교해본 테스트 프로젝트입니다.

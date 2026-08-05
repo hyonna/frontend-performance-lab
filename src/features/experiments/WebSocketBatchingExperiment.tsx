@@ -9,74 +9,103 @@ export function WebSocketBatchingExperiment() {
   const [mode, setMode] = useState<'before' | 'after'>('after');
 
   return (
-    <div className="space-y-4 font-sans">
-      <GeistCard className="flex items-center justify-between p-4 bg-white border border-neutral-200">
-        <div className="flex space-x-2">
+    <GeistCard className="bg-white border border-neutral-200 p-5 space-y-6 font-sans">
+      {/* 1. 상단 모드 스위처 및 수치 지표 (통합 카드 내부) */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-neutral-100">
+        <div className="flex flex-wrap items-center gap-2">
           <GeistButton
             variant={mode === 'before' ? 'danger' : 'outline'}
             size="sm"
             onClick={() => setMode('before')}
           >
-            개선 전 (메시지당 1회 즉시 렌더링)
+            개선 전 모드
           </GeistButton>
           <GeistButton
             variant={mode === 'after' ? 'success' : 'outline'}
             size="sm"
             onClick={() => setMode('after')}
           >
-            개선 후 (Ref 버퍼링 & 500ms Batch)
+            개선 후 모드
           </GeistButton>
         </div>
 
-        <div className="flex space-x-6 font-mono text-right">
+        <div className="flex items-center space-x-4 font-mono sm:text-right shrink-0">
           <div>
-            <div className="text-sm text-neutral-700 font-bold">초당 렌더링 프레임 폭주</div>
+            <div className="text-xs sm:text-sm text-neutral-700 font-bold">
+              초당 렌더링 프레임 폭주
+            </div>
             <div
-              className={`text-base font-bold ${mode === 'before' ? 'text-neutral-600' : 'text-blue-900'}`}
+              className={`text-sm sm:text-base font-bold ${mode === 'before' ? 'text-neutral-600' : 'text-blue-900'}`}
             >
               {mode === 'before' ? '45 회 / sec (위험)' : '2 회 / sec (안정)'}
             </div>
           </div>
         </div>
-      </GeistCard>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-sm">
-        <GeistCard className="bg-white border border-neutral-200 space-y-3">
-          <div className="flex items-center justify-between border-b border-neutral-200 pb-2">
-            <span className="text-sm font-bold text-black">웹소켓 데이터 처리 구조</span>
-            <GeistBadge variant={mode === 'before' ? 'rose' : 'blue'} className="text-sm font-bold">
-              {mode === 'before' ? 'Direct setState' : 'Buffered Batching'}
-            </GeistBadge>
-          </div>
-
-          <div className="space-y-2 text-sm text-black font-medium">
-            <div className="flex justify-between p-2.5 bg-neutral-50 rounded border border-neutral-200">
-              <span>수신 버퍼 보관 방식:</span>
-              <span className="font-bold">
-                {mode === 'before' ? '미사용 (직접 State 타격)' : 'useRef 버퍼 큐에 임시 수집'}
-              </span>
-            </div>
-            <div className="flex justify-between p-2.5 bg-neutral-50 rounded border border-neutral-200">
-              <span>배치 반영 주기:</span>
-              <span className="font-bold">
-                {mode === 'before' ? '0ms (실시간 45회 폭주)' : '500ms 주기 묶음 업데이트'}
-              </span>
-            </div>
-          </div>
-        </GeistCard>
-
-        <GeistCard className="bg-white border border-neutral-200 space-y-3">
-          <h4 className="text-sm font-bold text-black border-b border-neutral-200 pb-2">
-            메인 스레드 안전성 분석
-          </h4>
-
-          <div className="p-3 bg-neutral-50 rounded-lg border border-neutral-200 text-sm text-black font-medium leading-relaxed font-sans">
-            💡 <span className="font-bold">분석 가이드:</span> 웹소켓이나 실시간 체결가 데이터는
-            초당 수십 회 들어올 수 있습니다. 메시지마다 setState를 호출하면 브라우저 탭 렉이
-            발생하므로 useRef 버퍼에 모아두고 500ms 간격으로 묶어서 렌더링해야 합니다.
-          </div>
-        </GeistCard>
       </div>
-    </div>
+
+      {/* 2. 웹소켓 데이터 처리 스펙 */}
+      <div className="space-y-3 font-mono text-sm">
+        <div className="flex items-center justify-between border-b border-neutral-100 pb-2">
+          <span className="text-sm font-bold text-black">웹소켓 데이터 처리 스펙</span>
+          <GeistBadge variant="mono" className="text-xs font-bold">
+            Before & After
+          </GeistBadge>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+          <div
+            className={`p-3 rounded-lg space-y-2 min-w-0 transition ${
+              mode === 'before' ? 'bg-red-50/80 ring-2 ring-red-400/30' : 'bg-neutral-50 opacity-80'
+            }`}
+          >
+            <div className="flex items-center justify-between border-b border-neutral-200/50 pb-1.5">
+              <GeistBadge variant="rose" className="text-xs font-bold">
+                개선 전
+              </GeistBadge>
+              <span className="text-xs font-bold text-neutral-600 truncate">Direct setState</span>
+            </div>
+            <div className="text-xs text-neutral-800 space-y-1.5 break-words">
+              <div>
+                <span className="font-bold text-neutral-900">버퍼 보관:</span> 미사용 (직접 타격)
+              </div>
+              <div>
+                <span className="font-bold text-neutral-900">반영 주기:</span> 0ms (실시간 45회
+                폭주)
+              </div>
+            </div>
+          </div>
+
+          <div
+            className={`p-3 rounded-lg space-y-2 min-w-0 transition ${
+              mode === 'after'
+                ? 'bg-blue-50/80 ring-2 ring-blue-400/30'
+                : 'bg-neutral-50 opacity-80'
+            }`}
+          >
+            <div className="flex items-center justify-between border-b border-neutral-200/50 pb-1.5">
+              <GeistBadge variant="blue" className="text-xs font-bold">
+                개선 후
+              </GeistBadge>
+              <span className="text-xs font-bold text-blue-900 truncate">Buffered Batching</span>
+            </div>
+            <div className="text-xs text-neutral-800 space-y-1.5 break-words">
+              <div>
+                <span className="font-bold text-neutral-900">버퍼 보관:</span> useRef 큐 임시 수집
+              </div>
+              <div>
+                <span className="font-bold text-neutral-900">반영 주기:</span> 500ms 묶음 업데이트
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 3. 분석 가이드 */}
+      <div className="p-3.5 bg-neutral-50 rounded-lg text-sm text-black font-medium leading-relaxed font-sans break-words border-t border-neutral-100 pt-5">
+        💡 <span className="font-bold">분석 가이드:</span> 웹소켓이나 실시간 체결가 데이터는 초당
+        수십 회 들어올 수 있습니다. 메시지마다 setState를 호출하면 브라우저 탭 렉이 발생하므로
+        useRef 버퍼에 모아두고 500ms 간격으로 묶어서 렌더링해야 합니다.
+      </div>
+    </GeistCard>
   );
 }

@@ -28,19 +28,23 @@ export function MetricCard({
         </GeistBadge>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 items-center bg-neutral-50 rounded-lg p-3.5 border border-neutral-200 font-mono">
-        <div>
-          <div className="text-xs text-neutral-600 uppercase tracking-wider mb-0.5 font-bold">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-neutral-50 rounded-lg p-4 border border-neutral-200 font-mono">
+        <div className="flex-1 min-w-0">
+          <div className="text-xs text-neutral-600 uppercase tracking-wider mb-1 font-bold">
             개선 전
           </div>
-          <div className="text-base font-bold text-neutral-600 line-through">{beforeValue}</div>
+          <div className="text-sm sm:text-base font-bold text-neutral-600 line-through break-words">
+            {beforeValue}
+          </div>
         </div>
 
-        <div className="border-l border-neutral-200 pl-4">
-          <div className="text-xs text-blue-900 uppercase tracking-wider mb-0.5 font-bold">
+        <div className="border-t border-neutral-200/80 pt-2.5 sm:border-t-0 sm:border-l sm:pt-0 sm:pl-4 flex-1 min-w-0">
+          <div className="text-xs text-blue-900 uppercase tracking-wider mb-1 font-bold">
             개선 후
           </div>
-          <div className="text-lg font-black text-blue-900">{afterValue}</div>
+          <div className="text-base sm:text-lg font-black text-blue-900 break-words">
+            {afterValue}
+          </div>
         </div>
       </div>
 

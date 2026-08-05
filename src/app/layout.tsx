@@ -57,7 +57,7 @@ export default function RootLayout({
             <div className="flex-1 flex flex-col min-h-screen w-full overflow-x-hidden">
               <main className="flex-1 p-4 md:p-6 lg:p-8 max-w-7xl mx-auto w-full">{children}</main>
               {/* 푸터 */}
-              <footer className="py-6 px-4 border-t border-neutral-200 text-center text-sm font-sans text-neutral-700 font-medium">
+              <footer className="py-6 px-4 border-t border-neutral-200 text-center !text-[12px] font-sans text-neutral-400 font-medium">
                 © 2026 Yoon Hyun A. All rights reserved
               </footer>
             </div>

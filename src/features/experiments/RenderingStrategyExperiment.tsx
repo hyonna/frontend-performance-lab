@@ -48,10 +48,10 @@ export function RenderingStrategyExperiment() {
   const current = strategyData[strategy];
 
   return (
-    <div className="space-y-4">
-      {/* 렌더링 전략 스위처 */}
-      <GeistCard className="flex items-center justify-between p-4 bg-white border border-neutral-200">
-        <div className="flex space-x-2">
+    <GeistCard className="bg-white border border-neutral-200 p-5 space-y-6 font-sans">
+      {/* 1. 상단 라우팅 전략 스위처 (통합 카드 내부) */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-neutral-100">
+        <div className="flex flex-wrap items-center gap-2">
           {(['csr', 'ssr', 'ssg', 'isr'] as Strategy[]).map((s) => (
             <GeistButton
               key={s}
@@ -64,54 +64,51 @@ export function RenderingStrategyExperiment() {
           ))}
         </div>
 
-        <GeistBadge variant="mono" className="text-sm font-bold">
+        <GeistBadge variant="mono" className="text-xs font-bold shrink-0">
           선택된 전략: {strategy.toUpperCase()}
         </GeistBadge>
-      </GeistCard>
-
-      {/* 상세 벤치마크 */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <GeistCard className="bg-white border border-neutral-200 space-y-3 font-mono">
-          <div className="flex items-center justify-between border-b border-neutral-200 pb-2">
-            <h4 className="text-sm font-bold text-black">{current.title}</h4>
-            <GeistBadge variant="default" className="text-sm font-bold">
-              전략 스펙
-            </GeistBadge>
-          </div>
-
-          <p className="text-sm text-neutral-700 font-sans leading-relaxed font-medium">
-            {current.desc}
-          </p>
-
-          <div className="space-y-2 pt-2 text-sm text-black font-medium">
-            <div className="flex justify-between p-2.5 bg-neutral-50 rounded border border-neutral-200">
-              <span>TTFB (첫 바이트 수신 시간):</span>
-              <span className="font-bold">{current.ttfb}</span>
-            </div>
-            <div className="flex justify-between p-2.5 bg-neutral-50 rounded border border-neutral-200">
-              <span>FCP (화면 첫 렌더링 시간):</span>
-              <span className="font-bold">{current.fcp}</span>
-            </div>
-          </div>
-        </GeistCard>
-
-        <GeistCard className="bg-white border border-neutral-200 space-y-3 font-mono">
-          <h4 className="text-sm font-bold text-black border-b border-neutral-200 pb-2">
-            인프라 영향도 분석
-          </h4>
-
-          <div className="space-y-2 text-sm text-black font-medium">
-            <div className="flex justify-between p-2.5 bg-neutral-50 rounded border border-neutral-200">
-              <span>검색엔진 최적화 (SEO):</span>
-              <span className="font-bold">{current.seo}</span>
-            </div>
-            <div className="flex justify-between p-2.5 bg-neutral-50 rounded border border-neutral-200">
-              <span>오리진 서버 연산 부하:</span>
-              <span className="font-bold">{current.serverLoad}</span>
-            </div>
-          </div>
-        </GeistCard>
       </div>
-    </div>
+
+      {/* 2. 전략 스펙 */}
+      <div className="space-y-3 font-mono">
+        <div className="flex items-center justify-between border-b border-neutral-100 pb-2">
+          <h4 className="text-sm font-bold text-black">{current.title}</h4>
+          <GeistBadge variant="default" className="text-xs font-bold">
+            전략 스펙
+          </GeistBadge>
+        </div>
+
+        <p className="text-sm text-neutral-700 font-sans leading-relaxed font-medium">
+          {current.desc}
+        </p>
+
+        <div className="space-y-2 text-sm text-black font-medium">
+          <div className="flex justify-between p-3 bg-neutral-50 rounded-lg">
+            <span>TTFB (첫 바이트 수신 시간):</span>
+            <span className="font-bold">{current.ttfb}</span>
+          </div>
+          <div className="flex justify-between p-3 bg-neutral-50 rounded-lg">
+            <span>FCP (화면 첫 렌더링 시간):</span>
+            <span className="font-bold">{current.fcp}</span>
+          </div>
+        </div>
+      </div>
+
+      {/* 3. 인프라 영향도 분석 */}
+      <div className="space-y-3 font-mono border-t border-neutral-100 pt-5">
+        <h4 className="text-sm font-bold text-black">인프라 영향도 분석</h4>
+
+        <div className="space-y-2 text-sm text-black font-medium">
+          <div className="flex justify-between p-3 bg-neutral-50 rounded-lg">
+            <span>검색엔진 최적화 (SEO):</span>
+            <span className="font-bold">{current.seo}</span>
+          </div>
+          <div className="flex justify-between p-3 bg-neutral-50 rounded-lg">
+            <span>오리진 서버 연산 부하:</span>
+            <span className="font-bold">{current.serverLoad}</span>
+          </div>
+        </div>
+      </div>
+    </GeistCard>
   );
 }

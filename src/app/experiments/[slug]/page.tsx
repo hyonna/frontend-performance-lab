@@ -1,4 +1,5 @@
 import { EXPERIMENTS_DATA } from '@/entities/experiment/model/experimentsData';
+import { MetricCard } from '@/shared/ui/MetricCard';
 import { ReportTabs } from '@/shared/ui/ReportTabs';
 import { GeistCard } from '@/shared/ui/geist/GeistCard';
 import { ExperimentHeader } from '@/widgets/ExperimentHeader';
@@ -193,19 +194,29 @@ export default async function ExperimentPage({ params }: ExperimentPageProps) {
   };
 
   return (
-    <div className="space-y-8 pb-12">
-      {/* 테스트 헤더 배너 및 수치 요약 */}
+    <div className="space-y-8 pb-12 font-sans">
+      {/* 1. 테스트 헤더 배너 (개요) */}
       <ExperimentHeader experiment={experiment} />
 
-      {/* 인터랙티브 샌드박스 컴포넌트 */}
+      {/* 2. 성능 개선 수치 요약 (성능 테스트 섹션 바로 위 배치) */}
+      <div>
+        <MetricCard
+          title="성능 개선 수치 요약"
+          beforeValue={experiment.beforeStats.value}
+          afterValue={experiment.afterStats.value}
+          improvementRate={experiment.improvementRate}
+        />
+      </div>
+
+      {/* 3. 성능 테스트 (인터랙티브 샌드박스 컴포넌트) */}
       <div className="space-y-3">
-        <h2 className="text-sm font-bold text-black flex items-center space-x-2 font-mono">
+        <h2 className="text-base font-bold text-black flex items-center space-x-2 font-mono">
           <span>성능 테스트</span>
         </h2>
         {renderDemo()}
       </div>
 
-      {/* 테스트 회고 리포트 및 소스코드 비교 분석 문서 */}
+      {/* 4. 성능 리포트 (테스트 회고 및 소스코드 비교 문서) */}
       <ReportTabs
         report={experiment.report}
         codeSnippet={experiment.codeSnippet}

@@ -7,7 +7,7 @@ import { GeistCard } from '@/shared/ui/geist/GeistCard';
 import Link from 'next/link';
 import React from 'react';
 
-const summery = `  성능 최적화는 단순히 'React.memo', useMemo', Code Splitting과 같은 기법을 적용하는 것이 아니라, \n성능 저하의 원인을 분석하고 상황에 맞는 해결 방법을 선택하는 과정이라고 생각합니다. 
+const summery = `  성능 최적화는 단순히 'React.memo', useMemo', Code Splitting과 같은 기법을 적용하는 것이 아니라, 성능 저하의 원인을 분석하고 상황에 맞는 해결 방법을 선택하는 과정이라고 생각합니다. 
 
 하지만 대부분의 자료는 최적화 기법 자체를 소개하는 데 그쳐, 실제 서비스에서 어떤 문제가 발생했고 어떤 방식으로 개선되었는지, 그리고 그 결과가 얼마나 효과적이었는지 확인하기 어려웠습니다.
                     
@@ -54,7 +54,7 @@ export function MetricDashboard() {
       <div>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
           <div>
-            <h2 className="text-base sm:text-lg font-bold text-black">성능 최적화 리스트 (20종)</h2>
+            <h2 className="text-base sm:text-lg font-bold text-black">성능 최적화 리스트</h2>
             <p className="text-xs sm:text-sm font-mono text-neutral-700 mt-0.5 font-medium">
               테스트를 선택하여 성능 변화를 직접 확인하세요.
             </p>

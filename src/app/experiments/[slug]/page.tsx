@@ -12,7 +12,7 @@ const LoadingFallback = () => (
   </GeistCard>
 );
 
-// 클라이언트 수화 불일치 방지를 위한 ssr: false 동적 임포트
+// 클라이언트 수화 불일치 방지를 위한 ssr: false 동적 임포트 (#1 ~ #10)
 const RenderingExperiment = dynamic(
   () => import('@/features/experiments/RenderingExperiment').then((m) => m.RenderingExperiment),
   { loading: LoadingFallback, ssr: false },
@@ -61,6 +61,71 @@ const AccessibilityExperiment = dynamic(
   { loading: LoadingFallback, ssr: false },
 );
 
+// 신규 추가 샌드박스 (#11 ~ #20)
+const ContextSplittingExperiment = dynamic(
+  () =>
+    import('@/features/experiments/ContextSplittingExperiment').then(
+      (m) => m.ContextSplittingExperiment,
+    ),
+  { loading: LoadingFallback, ssr: false },
+);
+const TanStackQueryCacheExperiment = dynamic(
+  () =>
+    import('@/features/experiments/TanStackQueryCacheExperiment').then(
+      (m) => m.TanStackQueryCacheExperiment,
+    ),
+  { loading: LoadingFallback, ssr: false },
+);
+const WebSocketBatchingExperiment = dynamic(
+  () =>
+    import('@/features/experiments/WebSocketBatchingExperiment').then(
+      (m) => m.WebSocketBatchingExperiment,
+    ),
+  { loading: LoadingFallback, ssr: false },
+);
+const InfiniteScrollExperiment = dynamic(
+  () =>
+    import('@/features/experiments/InfiniteScrollExperiment').then(
+      (m) => m.InfiniteScrollExperiment,
+    ),
+  { loading: LoadingFallback, ssr: false },
+);
+const LayoutThrashingExperiment = dynamic(
+  () =>
+    import('@/features/experiments/LayoutThrashingExperiment').then(
+      (m) => m.LayoutThrashingExperiment,
+    ),
+  { loading: LoadingFallback, ssr: false },
+);
+const CssAnimationExperiment = dynamic(
+  () =>
+    import('@/features/experiments/CssAnimationExperiment').then((m) => m.CssAnimationExperiment),
+  { loading: LoadingFallback, ssr: false },
+);
+const FontOptimizationExperiment = dynamic(
+  () =>
+    import('@/features/experiments/FontOptimizationExperiment').then(
+      (m) => m.FontOptimizationExperiment,
+    ),
+  { loading: LoadingFallback, ssr: false },
+);
+const ApiParallelExperiment = dynamic(
+  () => import('@/features/experiments/ApiParallelExperiment').then((m) => m.ApiParallelExperiment),
+  { loading: LoadingFallback, ssr: false },
+);
+const ScriptLoadingExperiment = dynamic(
+  () =>
+    import('@/features/experiments/ScriptLoadingExperiment').then((m) => m.ScriptLoadingExperiment),
+  { loading: LoadingFallback, ssr: false },
+);
+const SuspenseStreamingExperiment = dynamic(
+  () =>
+    import('@/features/experiments/SuspenseStreamingExperiment').then(
+      (m) => m.SuspenseStreamingExperiment,
+    ),
+  { loading: LoadingFallback, ssr: false },
+);
+
 export function generateStaticParams() {
   return EXPERIMENTS_DATA.map((exp) => ({
     slug: exp.slug,
@@ -102,6 +167,26 @@ export default async function ExperimentPage({ params }: ExperimentPageProps) {
         return <MemoryLeakExperiment />;
       case 'accessibility':
         return <AccessibilityExperiment />;
+      case 'context-splitting':
+        return <ContextSplittingExperiment />;
+      case 'tanstack-query-cache':
+        return <TanStackQueryCacheExperiment />;
+      case 'websocket-batching':
+        return <WebSocketBatchingExperiment />;
+      case 'infinite-scroll':
+        return <InfiniteScrollExperiment />;
+      case 'layout-thrashing':
+        return <LayoutThrashingExperiment />;
+      case 'css-animation-gpu':
+        return <CssAnimationExperiment />;
+      case 'font-cls-optimization':
+        return <FontOptimizationExperiment />;
+      case 'api-waterfall-parallel':
+        return <ApiParallelExperiment />;
+      case 'script-loading-strategy':
+        return <ScriptLoadingExperiment />;
+      case 'suspense-streaming-ssr':
+        return <SuspenseStreamingExperiment />;
       default:
         return null;
     }
@@ -115,7 +200,7 @@ export default async function ExperimentPage({ params }: ExperimentPageProps) {
       {/* 인터랙티브 샌드박스 컴포넌트 */}
       <div className="space-y-3">
         <h2 className="text-sm font-bold text-black flex items-center space-x-2 font-mono">
-          <span>실시간 측정 샌드박스</span>
+          <span>성능 테스트</span>
         </h2>
         {renderDemo()}
       </div>

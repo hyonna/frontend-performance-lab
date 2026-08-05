@@ -52,14 +52,12 @@ export default function RootLayout({
       </head>
       <body className="bg-geist-bg text-black min-h-screen flex flex-col antialiased">
         <QueryProvider>
-          <div className="flex flex-1">
+          <div className="flex flex-col lg:flex-row min-h-screen">
             <Sidebar />
-            <div className="flex-1 flex flex-col min-h-screen">
-              <main className="flex-1 p-6 md:p-8 max-w-7xl mx-auto w-full overflow-x-hidden">
-                {children}
-              </main>
+            <div className="flex-1 flex flex-col min-h-screen w-full overflow-x-hidden">
+              <main className="flex-1 p-4 md:p-6 lg:p-8 max-w-7xl mx-auto w-full">{children}</main>
               {/* 푸터 */}
-              <footer className="py-6 border-t border-neutral-200 text-center text-sm font-sans text-neutral-700 font-medium">
+              <footer className="py-6 px-4 border-t border-neutral-200 text-center text-sm font-sans text-neutral-700 font-medium">
                 © 2026 Yoon Hyun A. All rights reserved
               </footer>
             </div>

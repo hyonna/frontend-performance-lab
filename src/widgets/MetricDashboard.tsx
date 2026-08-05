@@ -22,24 +22,24 @@ const summery = `  성능 최적화는 단순히 'React.memo', useMemo', Code Sp
 
 export function MetricDashboard() {
   return (
-    <div className="space-y-10">
+    <div className="space-y-6 md:space-y-10">
       {/* 프로젝트 소개 및 가이드 통합 히어로 배너 카드 */}
-      <GeistCard className="p-8 md:p-10 relative overflow-hidden bg-gradient-to-b from-neutral-50 via-white to-white border border-neutral-200 space-y-8">
+      <GeistCard className="p-5 sm:p-8 md:p-10 relative overflow-hidden bg-gradient-to-b from-neutral-50 via-white to-white border border-neutral-200 space-y-6 md:space-y-8">
         {/* 상단 타이틀 및 소개 */}
         <div className="w-full space-y-4">
-          <h1 className="text-3xl md:text-5xl font-black text-black leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-black text-black leading-tight">
             Frontend Performance <span className="text-neutral-700">Lab</span>
           </h1>
 
           {/* 히어로 배너 내 제작 의도 및 가이드 섹션 */}
-          <div className="flex gap-6 pt-4">
+          <div className="flex gap-6 pt-2 md:pt-4">
             {/* 제작 의도 상세 카드 */}
             <div className="w-full space-y-4">
-              <div className="text-black font-bold text-lg border-b border-neutral-200 pb-2">
+              <div className="text-black font-bold text-base md:text-lg border-b border-neutral-200 pb-2">
                 왜 이 프로젝트를 만들었나요?
               </div>
 
-              <div className="space-y-4 text-sm font-sans text-neutral-700 leading-relaxed font-medium">
+              <div className="space-y-4 text-xs sm:text-sm font-sans text-neutral-700 leading-relaxed font-medium">
                 {/* 섹션 1 */}
                 <div className="space-y-1.5">
                   <p className="whitespace-pre-line">{summery}</p>
@@ -50,35 +50,35 @@ export function MetricDashboard() {
         </div>
       </GeistCard>
 
-      {/* 10대 최적화 테스트 리스트 그리드 */}
+      {/* 20대 최적화 테스트 리스트 그리드 */}
       <div>
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
           <div>
-            <h2 className="text-lg font-bold text-black">성능 최적화 리스트</h2>
-            <p className="text-sm font-mono text-neutral-700 mt-0.5 font-medium">
+            <h2 className="text-base sm:text-lg font-bold text-black">성능 최적화 리스트 (20종)</h2>
+            <p className="text-xs sm:text-sm font-mono text-neutral-700 mt-0.5 font-medium">
               테스트를 선택하여 성능 변화를 직접 확인하세요.
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-3 sm:gap-4">
           {EXPERIMENTS_DATA.map((exp) => (
             <Link key={exp.id} href={`/experiments/${exp.slug}`} className="group">
               <GeistCard
                 hoverable
-                className="h-full flex flex-col justify-between p-5 bg-white border-neutral-200"
+                className="h-full flex flex-col justify-between p-4 sm:p-5 bg-white border-neutral-200"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <GeistBadge variant="mono" className="text-sm font-bold">
+                  <div className="flex items-center justify-between mb-2 sm:mb-3">
+                    <GeistBadge variant="mono" className="text-xs sm:text-sm font-bold">
                       테스트 #{exp.number}
                     </GeistBadge>
                   </div>
 
-                  <h3 className="text-base font-bold text-black group-hover:text-neutral-700 transition">
+                  <h3 className="text-sm sm:text-base font-bold text-black group-hover:text-neutral-700 transition">
                     {exp.titleKo}
                   </h3>
-                  <p className="text-sm text-neutral-700 line-clamp-2 leading-relaxed font-sans font-normal">
+                  <p className="text-xs sm:text-sm text-neutral-700 line-clamp-2 leading-relaxed font-sans font-normal mt-1">
                     {exp.description}
                   </p>
                 </div>
